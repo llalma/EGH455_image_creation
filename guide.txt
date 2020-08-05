@@ -1,0 +1,57 @@
+
+#########################################################################################################################
+Predict on raspberry pi
+#########################################################################################################################
+Steps:
+1.train model, see train model section
+2.line 14 of detect/camera.py, need to change Resolution size, out model uses 300,300, default ones with git project is 320,320
+3.Run model, camera live stream is only visable on a hdmi conencted monitor
+	source .venv/bin/activate
+	rpi-deep-pantilt detect Chemical_Sign Aruco Dangerous_Goods
+
+
+#########################################################################################################################
+Train model: 
+will need to run this process twice, once for train data, once for test data
+using this guide https://medium.com/@omcar17/how-to-convert-xml-files-into-tfrecords-in-tensorflow2-0-86120b553f0b
+#########################################################################################################################
+
+1.generate train images
+	python create_images.py
+2.run generate_csv.py
+	python generate_csv.py xml generated_images/labels output.csv
+3.run generate_tfrecord.py
+	python generate_tfrecord.py output.csv output_pb.txt generated_images/images train.record
+
+4.Transfer
+	genereated_images/images - attempt1/images/train
+	train.record - attempt1/annotations
+	
+5.generate test images
+6.run generate_csv.py
+	python generate_csv.py xml generated_images/labels output.csv
+7.run generate_tfrecord.py
+	python generate_tfrecord.py output.csv output_pb.txt generated_images/images test.record
+
+8.Transfer
+	genereated_images/images - attempt1/images/test
+	test.record - attempt1/annotations
+
+9.cd workspace\attempt1
+
+10. Using this guide https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/training.html#exporting-a-trained-model
+	python model_main_tf2.py --model_dir=models/1st_attempt --pipeline_config_path=models/1st_attempt/pipeline.config
+
+10.1. optional step to view loss
+	tensorboard --logdir=models/1st_attempt
+	then localhost:6006
+
+11. When done training
+	python pb2tflite.py exported-models/1st_attempt/saved_model model.tflite
+
+12. In this folder, /home/pi/.keras/models/Custom_MobileNetV2 , place all files in the directory recursivly into the previosuly listed folder with no directorys
+
+
+#########################################################################################################################
+
+#########################################################################################################################
