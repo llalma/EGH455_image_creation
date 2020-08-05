@@ -24,8 +24,8 @@ using this guide https://medium.com/@omcar17/how-to-convert-xml-files-into-tfrec
 	python generate_tfrecord.py output.csv output_pb.txt generated_images/images train.record
 
 4.Transfer
-	genereated_images/images - attempt1/images/train
-	train.record - attempt1/annotations
+	images - images/train
+	train.record - annotations
 	
 5.generate test images
 6.run generate_csv.py
@@ -34,10 +34,9 @@ using this guide https://medium.com/@omcar17/how-to-convert-xml-files-into-tfrec
 	python generate_tfrecord.py output.csv output_pb.txt generated_images/images test.record
 
 8.Transfer
-	genereated_images/images - attempt1/images/test
-	test.record - attempt1/annotations
+	images - images/test
+	test.record - annotations
 
-9.cd workspace\attempt1
 
 10. Using this guide https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/training.html#exporting-a-trained-model
 	python model_main_tf2.py --model_dir=models/1st_attempt --pipeline_config_path=models/1st_attempt/pipeline.config
@@ -47,7 +46,7 @@ using this guide https://medium.com/@omcar17/how-to-convert-xml-files-into-tfrec
 	then localhost:6006
 
 11. When done training
-	python pb2tflite.py exported-models/1st_attempt/saved_model model.tflite
+	python pb2tflite.py exported-models/1st_attempt/saved_model exported-models/1st_attempt/model.tflite
 
 12. In this folder, /home/pi/.keras/models/Custom_MobileNetV2 , place all files in the directory recursivly into the previosuly listed folder with no directorys
 

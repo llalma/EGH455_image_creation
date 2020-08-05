@@ -10,28 +10,4 @@
     <depth>3</depth>
   </size>
   <segmented>0</segmented>
-  <object>
-    <name>Chemical_Sign</name>
-    <pose>Unspecified</pose>
-    <truncated>0</truncated>
-    <difficult>0</difficult>
-    <bndbox>
-      <xmin>538</xmin>
-      <ymin>497</ymin>
-      <xmax>762</xmax>
-      <ymax>721</ymax>
-    </bndbox>
-  </object>
-  <object>
-    <name>Chemical_Sign</name>
-    <pose>Unspecified</pose>
-    <truncated>0</truncated>
-    <difficult>0</difficult>
-    <bndbox>
-      <xmin>836</xmin>
-      <ymin>736</ymin>
-      <xmax>956</xmax>
-      <ymax>856</ymax>
-    </bndbox>
-  </object>
 </annotation>

@@ -10,16 +10,4 @@
     <depth>3</depth>
   </size>
   <segmented>0</segmented>
-  <object>
-    <name>Dangerous_Goods</name>
-    <pose>Unspecified</pose>
-    <truncated>0</truncated>
-    <difficult>0</difficult>
-    <bndbox>
-      <xmin>672</xmin>
-      <ymin>703</ymin>
-      <xmax>944</xmax>
-      <ymax>975</ymax>
-    </bndbox>
-  </object>
 </annotation>

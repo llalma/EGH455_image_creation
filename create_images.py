@@ -196,6 +196,9 @@ def superImpose(background, imgs, labels,sq_size,labels_list,i):
     #Save image
     if i%100 == 0:
         print("Saving superimposed image and text file " + str(i))
+
+    resize_image = (300,300)
+    new_img.thumbnail(resize_image, Image.ANTIALIAS)
     new_img.convert('RGB').save('generated_images//images//'+save_name+'.jpg')
 #end
 
@@ -220,7 +223,7 @@ background_size = (3000,3000)   #Inital background load in size, want this to be
 overlay_size = (300,300)    #Image which is overlayed will be a random size between 100 and this size. This needs to be smaller than generated_size
 generated_size = 1000   #Output size of the image, specificies how big a section is from the background.
 
-num_images_to_genereate = 200  #Number of images to generate
+num_images_to_genereate = 3000  #Number of images to generate
 
 labels_list = [0,1,2]   #Add more labels as needed. Need to make sure that the overlayed images are in order at the top of the images folder. so the first 3 by alphabetical will be the labelled ones.
 #############################################################################################################################

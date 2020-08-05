@@ -10,16 +10,4 @@
     <depth>3</depth>
   </size>
   <segmented>0</segmented>
-  <object>
-    <name>Aruco</name>
-    <pose>Unspecified</pose>
-    <truncated>0</truncated>
-    <difficult>0</difficult>
-    <bndbox>
-      <xmin>308</xmin>
-      <ymin>888</ymin>
-      <xmax>420</xmax>
-      <ymax>1000</ymax>
-    </bndbox>
-  </object>
 </annotation>

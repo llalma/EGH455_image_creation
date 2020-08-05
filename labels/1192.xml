@@ -16,10 +16,22 @@
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>518</xmin>
-      <ymin>633</ymin>
-      <xmax>654</xmax>
-      <ymax>769</ymax>
+      <xmin>465</xmin>
+      <ymin>268</ymin>
+      <xmax>839</xmax>
+      <ymax>642</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>Dangerous_Goods</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>733</xmin>
+      <ymin>710</ymin>
+      <xmax>998</xmax>
+      <ymax>975</ymax>
     </bndbox>
   </object>
 </annotation>
