@@ -6,6 +6,8 @@ import shutil
 
 from os import listdir
 from os.path import isfile, join
+import glob, os
+
 
 class Coords: 
     def __init__(self, x, y, img_width,img_height): 
@@ -65,11 +67,45 @@ def section(img,sq_size):
     return img.crop(crop_pos)
 #end
 
+def text_for_creation(f,img_num,width,height):
+    temp = """<annotation>
+  <folder>VOC2007</folder>
+  <filename>{0}.jpg</filename>
+  <source>
+    <database>Self-made database</database>
+  </source>
+  <size>
+    <width>{1}</width>
+    <height>{2}</height>
+    <depth>3</depth>
+  </size>
+  <segmented>0</segmented>"""
+
+    f.write(temp.format(str(img_num),str(width),str(height)))
+#end
+
+
 def save_to_text_file(f,label,x_pos,y_pos,width,height):
     #Save the super imposed images coordinates into a text file that yolo can use.
-    #Form of: class x y width height
-    text = str(label) + " " + str(x_pos) + " " + str(y_pos) + " " + str(width) + " " + str(height) +"\n"
-    f.write(text)
+    
+    labels = {"0":"Chemical_Sign",
+                "1":"Aruco",
+                "2":"Dangerous_Goods"}
+
+    write_text = """\n  <object>
+    <name>{0}</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>{1}</xmin>
+      <ymin>{2}</ymin>
+      <xmax>{3}</xmax>
+      <ymax>{4}</ymax>
+    </bndbox>
+  </object>"""
+
+    f.write(write_text.format(labels.get(str(label)), str(x_pos),str(y_pos),str(round(x_pos+width)),str(round(y_pos+height))))
 #end
 
 
@@ -100,9 +136,10 @@ def check_overlap(img_width,img_height,back_width,back_height, previous_pasted_c
 
 def superImpose(background, imgs, labels,sq_size,labels_list,i):
     #Superimposes all images in imgs ontop of background with no overlap, then saves the image into images folder.
-    save_name = "img"+str(i)
+    save_name = str(i)
     #Label file
-    f = open("labels//"+save_name+".txt", "w")
+    f = open("labels//"+save_name+".xml", "w")
+    text_for_creation(f,save_name,sq_size,sq_size)
 
     #Randomly crop background and rescale back up to original size
     #Uses copy function so original background image can be used again
@@ -130,34 +167,36 @@ def superImpose(background, imgs, labels,sq_size,labels_list,i):
 
         #If max recursion depth is reached dont include the picture
         if(x_pos < 0):
-            print("Reach max recusion")
-            break;
+            # print("Reach max recusion")
+            break
+        else:
+            #Coords for bounding box, dont know why its like this but just take it.
+            x1 = (x_pos+(img_width/2))/back_width
+            y1 = (y_pos+(img_height/2))/back_width
+
+            #Write label text file. Only save labels which need to be detected
+            if label in labels_list:
+                save_to_text_file(f,label,x_pos,y_pos,img_width,img_height)  
+            #end      
+
+            #Superimpose image
+            new_img.paste(rot,(x_pos,y_pos),rot)
+
+            #Record pasted images coordinates
+            previous_pasted_coords.append(Coords(x1,y1,img_width/back_width,img_height/back_height))
         #end
-
-        #Coords for bounding box, dont know why its like this but just take it.
-        x1 = (x_pos+(img_width/2))/back_width
-        y1 = (y_pos+(img_height/2))/back_width
-
-        #Write label text file. Only save labels which need to be detected
-        if label in labels_list:
-            save_to_text_file(f,label,x1,y1,img_width/back_width,img_height/back_height)  
-        #end      
-
-        #Superimpose image
-        new_img.paste(rot,(x_pos,y_pos),rot)
-
-        #Record pasted images coordinates
-        previous_pasted_coords.append(Coords(x1,y1,img_width/back_width,img_height/back_height))
     #end
 
     #Close file
+    f.write("\n</annotation>")
     f.close()
 
-    shutil.copy("labels//"+save_name+".txt", "generated_images//"+save_name+".txt")
+    shutil.copy("labels//"+save_name+".xml", "generated_images//labels//"+save_name+".xml")
 
     #Save image
-    print("Saving superimposed image and text file " + str(i))
-    new_img.save('generated_images//'+save_name+'.png',"PNG")
+    if i%100 == 0:
+        print("Saving superimposed image and text file " + str(i))
+    new_img.convert('RGB').save('generated_images//images//'+save_name+'.jpg')
 #end
 
 #Stuff to include
@@ -170,13 +209,18 @@ def superImpose(background, imgs, labels,sq_size,labels_list,i):
 #Similar signs
 #Stop te signs from overlapping
 
+#Remove all images previously in the folder
+files = glob.glob('generated_images/images/*')
+for f in files:
+    os.remove(f)
+
 #############################################################################################################################
 #Change these lines to adjust the resolution of the model and the generated size
 background_size = (3000,3000)   #Inital background load in size, want this to be a high res image so when sectioned it will still look good.
 overlay_size = (300,300)    #Image which is overlayed will be a random size between 100 and this size. This needs to be smaller than generated_size
-generated_size = 1000    #Output size of the image, specificies how big a section is from the background.
+generated_size = 1000   #Output size of the image, specificies how big a section is from the background.
 
-num_images_to_genereate = 10    #Number of images to generate
+num_images_to_genereate = 200  #Number of images to generate
 
 labels_list = [0,1,2]   #Add more labels as needed. Need to make sure that the overlayed images are in order at the top of the images folder. so the first 3 by alphabetical will be the labelled ones.
 #############################################################################################################################
@@ -190,12 +234,11 @@ for i in range(num_images_to_genereate):
     #Then randomly selects between the 3 different signs
     num_to_impose = 5
     signs_to_impose = []
-    for n in range(1,random.randint(0,num_to_impose)):
+    for n in range(0,random.randint(1,num_to_impose)):
         signs_to_impose.append(random.randint(0,len(signs)-1))
     #end
 
     #Superimposes image, saves output and bounding box in YOLO format.
     superImpose(random.choice(floors),signs,signs_to_impose,generated_size,labels_list,i)
 #end
-
 
