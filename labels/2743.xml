@@ -5,8 +5,8 @@
     <database>Self-made database</database>
   </source>
   <size>
-    <width>1000</width>
-    <height>1000</height>
+    <width>640</width>
+    <height>640</height>
     <depth>3</depth>
   </size>
   <segmented>0</segmented>
@@ -16,10 +16,34 @@
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>853</xmin>
-      <ymin>245</ymin>
-      <xmax>953</xmax>
-      <ymax>345</ymax>
+      <xmin>296</xmin>
+      <ymin>165</ymin>
+      <xmax>374</xmax>
+      <ymax>243</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>Dangerous_Goods</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>371</xmin>
+      <ymin>164</ymin>
+      <xmax>506</xmax>
+      <ymax>299</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>Dangerous_Goods</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>405</xmin>
+      <ymin>452</ymin>
+      <xmax>508</xmax>
+      <ymax>555</ymax>
     </bndbox>
   </object>
   <object>
@@ -28,10 +52,10 @@
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>724</xmin>
-      <ymin>741</ymin>
-      <xmax>969</xmax>
-      <ymax>986</ymax>
+      <xmin>551</xmin>
+      <ymin>468</ymin>
+      <xmax>629</xmax>
+      <ymax>546</ymax>
     </bndbox>
   </object>
 </annotation>

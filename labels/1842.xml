@@ -5,8 +5,8 @@
     <database>Self-made database</database>
   </source>
   <size>
-    <width>1000</width>
-    <height>1000</height>
+    <width>640</width>
+    <height>640</height>
     <depth>3</depth>
   </size>
   <segmented>0</segmented>
@@ -16,10 +16,22 @@
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>47</xmin>
-      <ymin>34</ymin>
-      <xmax>160</xmax>
-      <ymax>147</ymax>
+      <xmin>403</xmin>
+      <ymin>238</ymin>
+      <xmax>493</xmax>
+      <ymax>328</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>Aruco</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>394</xmin>
+      <ymin>400</ymin>
+      <xmax>489</xmax>
+      <ymax>495</ymax>
     </bndbox>
   </object>
 </annotation>

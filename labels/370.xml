@@ -5,8 +5,8 @@
     <database>Self-made database</database>
   </source>
   <size>
-    <width>1000</width>
-    <height>1000</height>
+    <width>640</width>
+    <height>640</height>
     <depth>3</depth>
   </size>
   <segmented>0</segmented>
@@ -16,22 +16,10 @@
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>858</xmin>
-      <ymin>418</ymin>
-      <xmax>998</xmax>
-      <ymax>558</ymax>
-    </bndbox>
-  </object>
-  <object>
-    <name>Chemical_Sign</name>
-    <pose>Unspecified</pose>
-    <truncated>0</truncated>
-    <difficult>0</difficult>
-    <bndbox>
-      <xmin>120</xmin>
-      <ymin>566</ymin>
-      <xmax>503</xmax>
-      <ymax>949</ymax>
+      <xmin>513</xmin>
+      <ymin>214</ymin>
+      <xmax>628</xmax>
+      <ymax>329</ymax>
     </bndbox>
   </object>
   <object>
@@ -40,10 +28,10 @@
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>704</xmin>
-      <ymin>545</ymin>
-      <xmax>983</xmax>
-      <ymax>824</ymax>
+      <xmin>416</xmin>
+      <ymin>475</ymin>
+      <xmax>551</xmax>
+      <ymax>610</ymax>
     </bndbox>
   </object>
 </annotation>

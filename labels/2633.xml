@@ -5,8 +5,8 @@
     <database>Self-made database</database>
   </source>
   <size>
-    <width>1000</width>
-    <height>1000</height>
+    <width>640</width>
+    <height>640</height>
     <depth>3</depth>
   </size>
   <segmented>0</segmented>
@@ -16,10 +16,10 @@
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>512</xmin>
-      <ymin>336</ymin>
-      <xmax>670</xmax>
-      <ymax>494</ymax>
+      <xmin>423</xmin>
+      <ymin>58</ymin>
+      <xmax>543</xmax>
+      <ymax>178</ymax>
     </bndbox>
   </object>
 </annotation>

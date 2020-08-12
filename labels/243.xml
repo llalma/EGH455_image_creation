@@ -5,8 +5,8 @@
     <database>Self-made database</database>
   </source>
   <size>
-    <width>1000</width>
-    <height>1000</height>
+    <width>640</width>
+    <height>640</height>
     <depth>3</depth>
   </size>
   <segmented>0</segmented>
@@ -16,22 +16,22 @@
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>245</xmin>
-      <ymin>661</ymin>
-      <xmax>561</xmax>
-      <ymax>977</ymax>
+      <xmin>31</xmin>
+      <ymin>146</ymin>
+      <xmax>118</xmax>
+      <ymax>233</ymax>
     </bndbox>
   </object>
   <object>
-    <name>Dangerous_Goods</name>
+    <name>Aruco</name>
     <pose>Unspecified</pose>
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>640</xmin>
-      <ymin>579</ymin>
-      <xmax>935</xmax>
-      <ymax>874</ymax>
+      <xmin>361</xmin>
+      <ymin>368</ymin>
+      <xmax>453</xmax>
+      <ymax>460</ymax>
     </bndbox>
   </object>
 </annotation>

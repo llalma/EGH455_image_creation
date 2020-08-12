@@ -5,21 +5,21 @@
     <database>Self-made database</database>
   </source>
   <size>
-    <width>1000</width>
-    <height>1000</height>
+    <width>640</width>
+    <height>640</height>
     <depth>3</depth>
   </size>
   <segmented>0</segmented>
   <object>
-    <name>Aruco</name>
+    <name>Chemical_Sign</name>
     <pose>Unspecified</pose>
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>364</xmin>
-      <ymin>534</ymin>
-      <xmax>521</xmax>
-      <ymax>691</ymax>
+      <xmin>133</xmin>
+      <ymin>236</ymin>
+      <xmax>223</xmax>
+      <ymax>326</ymax>
     </bndbox>
   </object>
   <object>
@@ -28,10 +28,10 @@
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>414</xmin>
-      <ymin>696</ymin>
-      <xmax>586</xmax>
-      <ymax>868</ymax>
+      <xmin>274</xmin>
+      <ymin>34</ymin>
+      <xmax>383</xmax>
+      <ymax>143</ymax>
     </bndbox>
   </object>
   <object>
@@ -40,10 +40,22 @@
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>508</xmin>
-      <ymin>421</ymin>
-      <xmax>869</xmax>
-      <ymax>782</ymax>
+      <xmin>273</xmin>
+      <ymin>163</ymin>
+      <xmax>381</xmax>
+      <ymax>271</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>Dangerous_Goods</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>224</xmin>
+      <ymin>508</ymin>
+      <xmax>325</xmax>
+      <ymax>609</ymax>
     </bndbox>
   </object>
 </annotation>

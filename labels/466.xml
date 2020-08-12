@@ -5,21 +5,21 @@
     <database>Self-made database</database>
   </source>
   <size>
-    <width>1000</width>
-    <height>1000</height>
+    <width>640</width>
+    <height>640</height>
     <depth>3</depth>
   </size>
   <segmented>0</segmented>
   <object>
-    <name>Aruco</name>
+    <name>Dangerous_Goods</name>
     <pose>Unspecified</pose>
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>479</xmin>
-      <ymin>347</ymin>
-      <xmax>713</xmax>
-      <ymax>581</ymax>
+      <xmin>345</xmin>
+      <ymin>518</ymin>
+      <xmax>440</xmax>
+      <ymax>613</ymax>
     </bndbox>
   </object>
 </annotation>

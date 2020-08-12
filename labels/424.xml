@@ -5,8 +5,8 @@
     <database>Self-made database</database>
   </source>
   <size>
-    <width>1000</width>
-    <height>1000</height>
+    <width>640</width>
+    <height>640</height>
     <depth>3</depth>
   </size>
   <segmented>0</segmented>
@@ -16,22 +16,22 @@
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>86</xmin>
-      <ymin>582</ymin>
-      <xmax>204</xmax>
-      <ymax>700</ymax>
+      <xmin>386</xmin>
+      <ymin>393</ymin>
+      <xmax>510</xmax>
+      <ymax>517</ymax>
     </bndbox>
   </object>
   <object>
-    <name>Aruco</name>
+    <name>Chemical_Sign</name>
     <pose>Unspecified</pose>
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>290</xmin>
-      <ymin>535</ymin>
-      <xmax>523</xmax>
-      <ymax>768</ymax>
+      <xmin>546</xmin>
+      <ymin>203</ymin>
+      <xmax>630</xmax>
+      <ymax>287</ymax>
     </bndbox>
   </object>
 </annotation>

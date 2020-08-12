@@ -88,8 +88,8 @@ def text_for_creation(f,img_num,width,height):
 def save_to_text_file(f,label,x_pos,y_pos,width,height):
     #Save the super imposed images coordinates into a text file that yolo can use.
     
-    labels = {"0":"Chemical_Sign",
-                "1":"Aruco",
+    labels = {"1":"Chemical_Sign",
+                "0":"Aruco",
                 "2":"Dangerous_Goods"}
 
     write_text = """\n  <object>
@@ -155,7 +155,7 @@ def superImpose(background, imgs, labels,sq_size,labels_list,i):
         rot = imgs.get(str(label)).rotate(theta,expand=1)
 
         #Scale Image
-        new_size = random.randint(100,rot.size[0])
+        new_size = random.randint(75,rot.size[0])
         rot.thumbnail((new_size,new_size), PIL.Image.ANTIALIAS)
 
         #Get widths and heights
@@ -197,8 +197,6 @@ def superImpose(background, imgs, labels,sq_size,labels_list,i):
     if i%100 == 0:
         print("Saving superimposed image and text file " + str(i))
 
-    resize_image = (300,300)
-    new_img.thumbnail(resize_image, Image.ANTIALIAS)
     new_img.convert('RGB').save('generated_images//images//'+save_name+'.jpg')
 #end
 
@@ -217,13 +215,17 @@ files = glob.glob('generated_images/images/*')
 for f in files:
     os.remove(f)
 
+files = glob.glob('generated_images/labels/*')
+for f in files:
+    os.remove(f)
+
 #############################################################################################################################
 #Change these lines to adjust the resolution of the model and the generated size
-background_size = (3000,3000)   #Inital background load in size, want this to be a high res image so when sectioned it will still look good.
-overlay_size = (300,300)    #Image which is overlayed will be a random size between 100 and this size. This needs to be smaller than generated_size
-generated_size = 1000   #Output size of the image, specificies how big a section is from the background.
+background_size = (1000,1000)   #Inital background load in size, want this to be a high res image so when sectioned it will still look good.
+overlay_size = (100,100)    #Image which is overlayed will be a random size between 100 and this size. This needs to be smaller than generated_size
+generated_size = 640   #Output size of the image, specificies how big a section is from the background.
 
-num_images_to_genereate = 3000  #Number of images to generate
+num_images_to_genereate = 500  #Number of images to generate
 
 labels_list = [0,1,2]   #Add more labels as needed. Need to make sure that the overlayed images are in order at the top of the images folder. so the first 3 by alphabetical will be the labelled ones.
 #############################################################################################################################
