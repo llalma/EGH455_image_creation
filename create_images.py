@@ -7,6 +7,8 @@ import shutil
 from os import listdir
 from os.path import isfile, join
 import glob, os
+import numpy as np
+import cv2
 
 
 class Coords: 
@@ -134,6 +136,51 @@ def check_overlap(img_width,img_height,back_width,back_height, previous_pasted_c
     return x_pos, y_pos
 #end
 
+def noisy(image):
+    #Add Gausian noise to image.
+    row,col= image.size
+    ch = 4
+    mean = 0
+    var = 0.1
+    sigma = var**0.5
+    gauss = np.random.normal(mean,sigma,(row,col,ch))
+    gauss = gauss.reshape(row,col,ch)
+    noisy = image + gauss
+    return Image.fromarray(np.uint8(noisy))
+#end
+
+def skew(img):
+    row,col= img.size
+    val1 = random.randint(0,10)/10
+    val2 = random.randint(0,10)/10
+    val3 = random.randint(0,10)/10
+    val4 = random.randint(0,10)/10
+    
+
+    pts1 = np.float32(
+    [[col*val2, row*val1],
+     [col*val3, row*val1],
+     [col*val4, 0],
+     [col,     0]]
+    )
+    pts2 = np.float32(
+        [[col*val4, row],
+        [col,     row],
+        [0,        0],
+        [col,     0]]
+    )   
+
+    M = cv2.getPerspectiveTransform(pts1,pts2)
+
+    dst = cv2.warpPerspective(np.float32(img),M,(640,640))
+
+    return Image.fromarray(np.uint8(dst))
+#end
+
+def rotate(img):
+    return img.rotate(random.randint(0,360))
+#end
+
 def superImpose(background, imgs, labels,sq_size,labels_list,i):
     #Superimposes all images in imgs ontop of background with no overlap, then saves the image into images folder.
     save_name = str(i)
@@ -197,8 +244,14 @@ def superImpose(background, imgs, labels,sq_size,labels_list,i):
     if i%100 == 0:
         print("Saving superimposed image and text file " + str(i))
 
-    resize_image = (300,300)
+    resize_image = (640,640)
     new_img.thumbnail(resize_image, Image.ANTIALIAS)
+    #Add Gausian Noise
+    new_img = noisy(new_img)
+    #Skew Image
+    # new_img = skew(new_img)
+    #Rotate image
+    # new_img = rotate(new_img)
     new_img.convert('RGB').save('generated_images//images//'+save_name+'.jpg')
 #end
 
@@ -219,11 +272,11 @@ for f in files:
 
 #############################################################################################################################
 #Change these lines to adjust the resolution of the model and the generated size
-background_size = (3000,3000)   #Inital background load in size, want this to be a high res image so when sectioned it will still look good.
-overlay_size = (300,300)    #Image which is overlayed will be a random size between 100 and this size. This needs to be smaller than generated_size
-generated_size = 1000   #Output size of the image, specificies how big a section is from the background.
+background_size = (640,640)   #Inital background load in size, want this to be a high res image so when sectioned it will still look good.
+overlay_size = (100,100)    #Image which is overlayed will be a random size between 100 and this size. This needs to be smaller than generated_size
+generated_size = 640   #Output size of the image, specificies how big a section is from the background.
 
-num_images_to_genereate = 3000  #Number of images to generate
+num_images_to_genereate = 10  #Number of images to generate
 
 labels_list = [0,1,2]   #Add more labels as needed. Need to make sure that the overlayed images are in order at the top of the images folder. so the first 3 by alphabetical will be the labelled ones.
 #############################################################################################################################
