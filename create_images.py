@@ -7,6 +7,8 @@ import shutil
 from os import listdir
 from os.path import isfile, join
 import glob, os
+import numpy as np
+import cv2
 
 
 class Coords: 
@@ -132,6 +134,51 @@ def check_overlap(img_width,img_height,back_width,back_height, previous_pasted_c
 
     #Image does not overlap with any other image, so return coords
     return x_pos, y_pos
+#end
+
+def noisy(image):
+    #Add Gausian noise to image.
+    row,col= image.size
+    ch = 4
+    mean = 0
+    var = 0.1
+    sigma = var**0.5
+    gauss = np.random.normal(mean,sigma,(row,col,ch))
+    gauss = gauss.reshape(row,col,ch)
+    noisy = image + gauss
+    return Image.fromarray(np.uint8(noisy))
+#end
+
+def skew(img):
+    row,col= img.size
+    val1 = random.randint(0,10)/10
+    val2 = random.randint(0,10)/10
+    val3 = random.randint(0,10)/10
+    val4 = random.randint(0,10)/10
+    
+
+    pts1 = np.float32(
+    [[col*val2, row*val1],
+     [col*val3, row*val1],
+     [col*val4, 0],
+     [col,     0]]
+    )
+    pts2 = np.float32(
+        [[col*val4, row],
+        [col,     row],
+        [0,        0],
+        [col,     0]]
+    )   
+
+    M = cv2.getPerspectiveTransform(pts1,pts2)
+
+    dst = cv2.warpPerspective(np.float32(img),M,(640,640))
+
+    return Image.fromarray(np.uint8(dst))
+#end
+
+def rotate(img):
+    return img.rotate(random.randint(0,360))
 #end
 
 def superImpose(background, imgs, labels,sq_size,labels_list,i):
