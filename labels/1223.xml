@@ -11,63 +11,15 @@
   </size>
   <segmented>0</segmented>
   <object>
-    <name>Dangerous_Goods</name>
+    <name>Aruco</name>
     <pose>Unspecified</pose>
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>5</xmin>
-      <ymin>135</ymin>
-      <xmax>110</xmax>
-      <ymax>240</ymax>
-    </bndbox>
-  </object>
-  <object>
-    <name>Chemical_Sign</name>
-    <pose>Unspecified</pose>
-    <truncated>0</truncated>
-    <difficult>0</difficult>
-    <bndbox>
-      <xmin>149</xmin>
-      <ymin>263</ymin>
-      <xmax>272</xmax>
-      <ymax>386</ymax>
-    </bndbox>
-  </object>
-  <object>
-    <name>Chemical_Sign</name>
-    <pose>Unspecified</pose>
-    <truncated>0</truncated>
-    <difficult>0</difficult>
-    <bndbox>
-      <xmin>433</xmin>
-      <ymin>9</ymin>
-      <xmax>521</xmax>
-      <ymax>97</ymax>
-    </bndbox>
-  </object>
-  <object>
-    <name>Dangerous_Goods</name>
-    <pose>Unspecified</pose>
-    <truncated>0</truncated>
-    <difficult>0</difficult>
-    <bndbox>
-      <xmin>369</xmin>
-      <ymin>365</ymin>
-      <xmax>476</xmax>
-      <ymax>472</ymax>
-    </bndbox>
-  </object>
-  <object>
-    <name>Chemical_Sign</name>
-    <pose>Unspecified</pose>
-    <truncated>0</truncated>
-    <difficult>0</difficult>
-    <bndbox>
-      <xmin>256</xmin>
-      <ymin>517</ymin>
-      <xmax>350</xmax>
-      <ymax>611</ymax>
+      <xmin>215</xmin>
+      <ymin>75</ymin>
+      <xmax>324</xmax>
+      <ymax>184</ymax>
     </bndbox>
   </object>
 </annotation>

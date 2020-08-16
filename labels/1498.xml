@@ -16,22 +16,22 @@
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>183</xmin>
-      <ymin>342</ymin>
-      <xmax>281</xmax>
-      <ymax>440</ymax>
+      <xmin>317</xmin>
+      <ymin>320</ymin>
+      <xmax>421</xmax>
+      <ymax>424</ymax>
     </bndbox>
   </object>
   <object>
-    <name>Chemical_Sign</name>
+    <name>Aruco</name>
     <pose>Unspecified</pose>
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>426</xmin>
-      <ymin>540</ymin>
-      <xmax>526</xmax>
-      <ymax>640</ymax>
+      <xmin>127</xmin>
+      <ymin>425</ymin>
+      <xmax>251</xmax>
+      <ymax>549</ymax>
     </bndbox>
   </object>
 </annotation>
