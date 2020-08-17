@@ -314,6 +314,10 @@ def superImpose(background,real,fake, labels,sq_size,i):
 files = glob.glob('generated_images/images/*')
 for f in files:
     os.remove(f)
+#Remove all images previously in the folder
+files = glob.glob('generated_images/labels/*')
+for f in files:
+    os.remove(f)
 
 #############################################################################################################################
 #Change these lines to adjust the resolution of the model and the generated size
@@ -321,7 +325,7 @@ background_size = (640,640)   #Inital background load in size, want this to be a
 overlay_size = (100,100)    #Image which is overlayed will be a random size between 100 and this size. This needs to be smaller than generated_size
 generated_size = 640   #Output size of the image, specificies how big a section is from the background.
 
-num_images_to_genereate = 4000  #Number of images to generate
+num_images_to_genereate = 500  #Number of images to generate
 
 #############################################################################################################################
 

@@ -16,10 +16,22 @@
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>503</xmin>
-      <ymin>455</ymin>
-      <xmax>603</xmax>
-      <ymax>555</ymax>
+      <xmin>306</xmin>
+      <ymin>131</ymin>
+      <xmax>416</xmax>
+      <ymax>241</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>Aruco</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>370</xmin>
+      <ymin>480</ymin>
+      <xmax>477</xmax>
+      <ymax>587</ymax>
     </bndbox>
   </object>
 </annotation>

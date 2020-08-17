@@ -16,10 +16,10 @@
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>492</xmin>
-      <ymin>201</ymin>
-      <xmax>608</xmax>
-      <ymax>317</ymax>
+      <xmin>514</xmin>
+      <ymin>113</ymin>
+      <xmax>615</xmax>
+      <ymax>214</ymax>
     </bndbox>
   </object>
   <object>
@@ -28,22 +28,10 @@
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>20</xmin>
-      <ymin>454</ymin>
-      <xmax>128</xmax>
-      <ymax>562</ymax>
-    </bndbox>
-  </object>
-  <object>
-    <name>Chemical_Sign</name>
-    <pose>Unspecified</pose>
-    <truncated>0</truncated>
-    <difficult>0</difficult>
-    <bndbox>
-      <xmin>287</xmin>
-      <ymin>494</ymin>
-      <xmax>391</xmax>
-      <ymax>598</ymax>
+      <xmin>106</xmin>
+      <ymin>418</ymin>
+      <xmax>206</xmax>
+      <ymax>518</ymax>
     </bndbox>
   </object>
 </annotation>
