@@ -11,15 +11,15 @@
   </size>
   <segmented>0</segmented>
   <object>
-    <name>Chemical_Sign</name>
+    <name>Aruco</name>
     <pose>Unspecified</pose>
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>299</xmin>
-      <ymin>396</ymin>
-      <xmax>405</xmax>
-      <ymax>502</ymax>
+      <xmin>211</xmin>
+      <ymin>49</ymin>
+      <xmax>322</xmax>
+      <ymax>188</ymax>
     </bndbox>
   </object>
 </annotation>

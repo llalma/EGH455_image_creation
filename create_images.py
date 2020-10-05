@@ -1,4 +1,4 @@
-from PIL import Image, ImageEnhance
+from PIL import Image, ImageEnhance, ImageOps
 import PIL
 import random
 from math import cos,sin
@@ -11,6 +11,8 @@ import numpy as np
 import cv2
 import cv2.aruco as aruco
 from time import sleep
+
+from math import sqrt
 
 
 class Coords: 
@@ -38,10 +40,10 @@ class Coords:
 def load_images(background_size,signs_size):
 
     #Signs to Detect
-    detect_signs = ["0-1.png","0-2.png","1-1.png","1-2.png","2-1.png","2-2.png",]
+    detect_signs = ["0-1.png","0-2.png","1-2.png","2-2.png","0-3.png","1-3.png","2-3.png","0-4.png","1-4.png","2-4.png"]
     real_signs = {}
     for i,sign in enumerate(detect_signs):
-        real_signs[detect_signs[i][0:3]] = Image.open('images/'+sign).resize(signs_size).convert('RGBA')
+        real_signs[detect_signs[i][0:3]] = Image.open('images/'+sign).convert('RGBA')
     #end
 
     #Fake signs
@@ -156,34 +158,6 @@ def noisy(image):
     return Image.fromarray(np.uint8(noisy))
 #end
 
-def skew(img):
-    row,col= img.size
-    val1 = random.randint(0,10)/10
-    val2 = random.randint(0,10)/10
-    val3 = random.randint(0,10)/10
-    val4 = random.randint(0,10)/10
-    
-
-    pts1 = np.float32(
-    [[col*val2, row*val1],
-     [col*val3, row*val1],
-     [col*val4, 0],
-     [col,     0]]
-    )
-    pts2 = np.float32(
-        [[col*val4, row],
-        [col,     row],
-        [0,        0],
-        [col,     0]]
-    )   
-
-    M = cv2.getPerspectiveTransform(pts1,pts2)
-
-    dst = cv2.warpPerspective(np.float32(img),M,(640,640))
-
-    return Image.fromarray(np.uint8(dst))
-#end
-
 def rotate(img):
     return img.rotate(random.randint(0,360))
 #end
@@ -191,20 +165,24 @@ def rotate(img):
 def contrast(img):
     enhancer = ImageEnhance.Contrast(img)
 
-    factor = random.randint(70,130)/100
+    factor = random.randint(80,120)/100
     im_output = enhancer.enhance(factor)
 
     return im_output
 #end
 
+def mirror(img):
+    return ImageOps.mirror(img)
+#end
+
 def get_image(label,imgs):
-    if label[0] == "0":
+    if label == "0-1":
         #Random aruco
-        random_aruco_index = random.randint(0,249)
+        random_aruco_index = random.randint(0,99)
         #Non changing aruco
         # random_aruco_index = 0
 
-        aruco_dict = aruco.Dictionary_get(aruco.DICT_4X4_250)
+        aruco_dict = aruco.Dictionary_get(aruco.DICT_5X5_100)
         # second parameter is id number
         # last parameter is total image size
         img = aruco.drawMarker(aruco_dict, random_aruco_index, 100)
@@ -247,12 +225,21 @@ def superImpose(background,real,fake, labels,sq_size,i):
         rot = img.rotate(theta,expand=1)
 
         #Scale Image
-        new_size = random.randint(100,rot.size[0])
-        rot.thumbnail((new_size,new_size), PIL.Image.ANTIALIAS)
+        multipier = random.randint(10,300)/100
+        rot.thumbnail((rot.size[0]*multipier,rot.size[1]*multipier), PIL.Image.ANTIALIAS)
+
+        #Flip Image
+        if random.choice([True, False]):
+            rot = mirror(rot)
+        #end
+
+        #Contrast for overlayed image
+        rot = contrast(rot)
 
         #Get widths and heights
         img_width,img_height = rot.size
         back_width, back_height = new_img.size
+
 
         #Get a random postion and ensure no overlapping images
         x_pos, y_pos = check_overlap(img_width,img_height,back_width,back_height,previous_pasted_coords)
@@ -322,10 +309,10 @@ for f in files:
 #############################################################################################################################
 #Change these lines to adjust the resolution of the model and the generated size
 background_size = (640,640)   #Inital background load in size, want this to be a high res image so when sectioned it will still look good.
-overlay_size = (100,100)    #Image which is overlayed will be a random size between 100 and this size. This needs to be smaller than generated_size
+overlay_size = (100,int(100*sqrt(2)))    #Image which is overlayed will be a random size between 100 and this size. This needs to be smaller than generated_size
 generated_size = 640   #Output size of the image, specificies how big a section is from the background.
 
-num_images_to_genereate = 500  #Number of images to generate
+num_images_to_genereate = 1000  #Number of images to generate
 
 #############################################################################################################################
 

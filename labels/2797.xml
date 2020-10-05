@@ -11,15 +11,15 @@
   </size>
   <segmented>0</segmented>
   <object>
-    <name>Dangerous_Goods</name>
+    <name>Aruco</name>
     <pose>Unspecified</pose>
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>391</xmin>
-      <ymin>220</ymin>
-      <xmax>500</xmax>
-      <ymax>329</ymax>
+      <xmin>52</xmin>
+      <ymin>295</ymin>
+      <xmax>198</xmax>
+      <ymax>423</ymax>
     </bndbox>
   </object>
   <object>
@@ -28,10 +28,10 @@
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>259</xmin>
-      <ymin>350</ymin>
-      <xmax>363</xmax>
-      <ymax>454</ymax>
+      <xmin>276</xmin>
+      <ymin>304</ymin>
+      <xmax>416</xmax>
+      <ymax>444</ymax>
     </bndbox>
   </object>
 </annotation>
